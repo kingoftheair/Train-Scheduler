@@ -65,7 +65,7 @@ var config = {
     newArrival.text(arrival);
     newMinutesAway.text(minutes);
  
-    newRow.append(newName, newDestination, newFrequency, arrival, newMinutesAway);
+    newRow.append(newName, newDestination, newFrequency, newArrival, newMinutesAway);
     $("#tBody").append(newRow);
 
 });
