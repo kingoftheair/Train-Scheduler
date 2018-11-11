@@ -43,7 +43,7 @@ var config = {
 
     database.ref("/trains").on("child_added", function(snapshot) {
 
-        let timeDiff = moment().diff(snapshot.val().tTime, "minutes");
+        let timeDiff = moment().diff(moment(snapshot.val().time, "minutes"));
         let remainder = timeDiff % (snapshot.val().frequency);
      //math for minutes left and arrival time
          minutes = (snapshot.val().frequency) - remainder
