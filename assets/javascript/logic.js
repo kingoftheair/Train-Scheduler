@@ -10,53 +10,63 @@ var config = {
 
   var database = firebase.database();
 
-    var name = "";
-    var destination = "";
-   var frequency = 0;
-    let time = "";
+   // var name = "";
+   // var destination = "";
+   //var frequency = 0;
+    //let time = "";
    // let minutes = 0;
    // let arrival = "";
-   let minutes = 0;
-   let arrival = "";
+   //let minutes = 0;
+   //let arrival = "";
 
-  
+   
 
   $( "#submitBtn" ).click(function() {
+    event.preventDefault();
 
-    var tName = $("#nameInput").val().trim();
-    var  tDestination = $("#destinationInput").val().trim();
-    var tTime = $("#timeInput").val().trim();
-    var tFrequency = $("#frequencyInput").val().trim();
+    var name = $("#nameInput").val().trim();
+    var  destination = $("#destinationInput").val().trim();
+    var time = $("#timeInput").val().trim();
+    var frequency = $("#frequencyInput").val().trim();
 
     database.ref("/trains").push({
-    name: tName,
-    destination: tDestination,
-    time: tTime,
-    frequency: tFrequency,
+    name: name,
+    destination: destination,
+    time: time,
+    frequency: frequency,
     //dateAdded:Firebase.ServerValue.TIMESTAMP
     });
-
+   
   });
 
-  database.ref().on("child_added", function(snapshot) {
-})
+
+
 
     database.ref("/trains").on("child_added", function(snapshot) {
 
+       event.preventDefault();
+
+        console.log(snapshot.val());
+        console.log(snapshot.val().name);
+        console.log(snapshot.val().destination);
+        console.log(snapshot.val().frequency);
+        console.log(snapshot.val().time);
+        
         let timeDiff = moment().diff(moment(snapshot.val().time, "minutes"));
         let remainder = timeDiff % (snapshot.val().frequency);
      //math for minutes left and arrival time
-         minutes = (snapshot.val().frequency) - remainder
+        minutes = (snapshot.val().frequency) - remainder;
         arrival = moment().add(minutes, "m").format("hh:mm A");
-        console.log(arrival);
-
+        
+        console.log(moment());
 
     var newRow = $("<tr>");
     var newName = $("<td>");
     var newDestination = $("<td>");
     var newFrequency = $("<td>");
     var newArrival = $("<td>");
-    var newMinutesAway = $("<td>");
+    var newMinutesAway= $("<td>");
+
 
     newName.text(snapshot.val().name);
     newDestination.text(snapshot.val().destination);
@@ -68,4 +78,15 @@ var config = {
     newRow.append(newName, newDestination, newFrequency, newArrival, newMinutesAway);
     $("#tBody").append(newRow);
 
-});
+   
+
+    console.log("timeDiff:  " + timeDiff);
+        console.log("remainder:  " + remainder);
+        console.log("minutes:  " + minutes);
+        console.log("arrival:  " + arrival);
+      // Handle the errors
+    },function(errorObject) {
+        console.log("Errors handled: " + errorObject.code);
+
+
+     });
