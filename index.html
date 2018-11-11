@@ -14,7 +14,73 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container" id="jumbo">
+                <h1 class="display-4">Train Schedule</h1>
+                <p class="lead">A Place for train times and much, much more</p>
+            </div>
+        </div>
+
+        <div class="card">
+                <h5 class="card-header"> Current Train Schedule </h5>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Trains Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency(min)</th>
+                    <th scope="col">Next Arrival</th>
+                    <th scope="col">Minutes Away</th>
+                    
+                  </tr>
+                </thead>
+                <tbody id="tBody">
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                   
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              <br><br>
+              <div class="card">
+                    <h5 class="card-header"> Add Trains </h5>
+                        <div class="card-body">
+                            <form> 
+                                <div class="form-group"> 
+                                        <label for="formGroupExampleInput"> Train Name </label> 
+                                            <input class="form-control" id="nameInput" placeholder="Example input"> 
+                                </div> 
+                                <div class="form-group"> 
+                                        <label for="formGroupExampleInput2"> Destination </label> 
+                                            <input class="form-control" id="destinationInput" placeholder="Another input"> 
+                                </div>
+                                <div class="form-group"> 
+                                        <label for="formGroupExampleInput2"> First Train Time (HH:mm-military time) </label> 
+                                            <input class="form-control" id="timeInput" placeholder="Another input" type="military-time"> 
+                                </div> 
+                                <div class="form-group"> 
+                                        <label for="formGroupExampleInput2"> Frequency (min)</label> 
+                                            <input class="form-control" id="frequencyInput" placeholder="Another input"> 
+                                </div> 
+                                
+                                <button id="submitBtn" type="button" class="btn btn-primary"> Submit </button>
+                                
+                            </form>
+                    </div>
+            </div>
+    </div>  
+    <br><br> 
+
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> 
 <script src="assets/javascript/logic.js"></script>
 </body>
