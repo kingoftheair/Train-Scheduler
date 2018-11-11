@@ -19,6 +19,8 @@ var config = {
    let minutes = 0;
    let arrival = "";
 
+  
+
   $( "#submitBtn" ).click(function() {
 
     var tName = $("#nameInput").val().trim();
@@ -41,11 +43,13 @@ var config = {
 
     database.ref("/trains").on("child_added", function(snapshot) {
 
-       // let timeDiff = moment().diff(moment(snapshot.val().time, "minutes"));
-      // let remainder = timeDiff % (snapshot.val().frequency);
-    //math for minutes left and arrival time
-        //minutes = (snapshot.val().tFrequency) - remainder
-       // arrival = moment().add(minutes, "m").format("hh:mm A");
+        let timeDiff = moment().diff(snapshot.val().tTime, "minutes");
+        let remainder = timeDiff % (snapshot.val().frequency);
+     //math for minutes left and arrival time
+         minutes = (snapshot.val().frequency) - remainder
+        arrival = moment().add(minutes, "m").format("hh:mm A");
+        console.log(arrival);
+
 
     var newRow = $("<tr>");
     var newName = $("<td>");
@@ -61,7 +65,7 @@ var config = {
     newArrival.text(arrival);
     newMinutesAway.text(minutes);
  
-    newRow.append(newName, newDestination, newFrequency, newArrival, newMinutesAway);
+    newRow.append(newName, newDestination, newFrequency, arrival, newMinutesAway);
     $("#tBody").append(newRow);
 
 });
