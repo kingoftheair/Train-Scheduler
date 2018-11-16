@@ -19,3 +19,7 @@ body, html {
 #submitBtn {
     background-color:lightgreen;
 }
+
+h5 {
+    text-align:center;
+}
